@@ -128,7 +128,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
 这里主要关注Capacity和threshold
 ## 1.1 Capacity必须是2的幂
 
-- 目的：保证计算槽点位置tab[i = (n - 1) & hash] 的结果在 [0,Cap-1] 之间
+- 目的：&运算比%运算的速度更快，hash表最主要的是散列均匀，因此通过hash % n可以保证hash表是最均匀的，只有当n是2的n次幂时，hash % n 等价于 hash & (n - 1)，这样即保证了运算效率又保证了散列均匀
 - 实现
   - 空参构造：16
   - 指定InitialCap：通过 threshold=tableForSize 计算出初始容量，得到 >= cap 且最接近的2的幂
